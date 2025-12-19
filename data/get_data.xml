@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!-- MIGRATION (Odoo 11→12):
+     - Cron job syntax unchanged; fully backward compatible
+     - Verified model references exist in v12
+     - Added descriptive comments for clarity
+-->
+<odoo>
+  <data noupdate="1">
+
+        <!-- LDAP Faculty Directory Synchronization -->
+        <record id="faculty_sync_ldap" model="ir.cron">
+          <field name="name">LDAP Faculty Directory Sync</field>
+          <field name="description">Synchronize faculty data from LDAP directory</field>
+          <field name="priority">5</field>
+          <field name="doall">False</field>
+          <field name="active">False</field>
+          <field name="numbercall">-1</field>
+          <field name="interval_number">1</field>
+          <field name="interval_type">days</field>
+          <field name="model_id" ref="model_student_ldap_directory"/>
+          <field name="state">code</field>
+          <field name="code">model._student_sync_ldap()</field>
+        </record>
+
+        <!-- HUE Joining Year Data Sync -->
+        <record id="hue_joining_year_sync" model="ir.cron">
+            <field name="name">Hue Joining Year Data Sync</field>
+            <field name="description">Synchronize joining year data from external source</field>
+            <field name="priority">5</field>
+            <field name="doall">False</field>
+            <field name="active">True</field>
+            <field name="numbercall">-1</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="model_id" ref="model_hue_faculties"/>
+            <field name="state">code</field>
+            <field name="code">model.hue_joining_year()</field>
+        </record>
+
+  </data>
+</odoo>

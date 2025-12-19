@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+   <data>
+
+      <record id="invoice_form_print_inherit" model="ir.ui.view">
+            <field name="name">invoice.form.deactive.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_invoice_draft']" position="before">
+                   <field name="deactive" invisible="True" />
+                    <button attrs="{'invisible':[('deactive','=',True)]}" name="action_invoice_deactive" type="object"  string="Deactive Invoice" groups="account.group_account_invoice" class="oe_highlight "/>
+                </xpath>
+            </field>
+      </record>
+
+
+      <record id="student_data_tree" model="ir.ui.view">
+         <field name="name">hue.student.tree</field>
+         <field name="model">op.student</field>
+         <field name="inherit_id" ref="openeducat_core.view_op_student_tree" />
+         <field name="priority" eval="1" />
+         <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="student_code" />
+                <field name="faculty" />
+                <field name="level" />
+                <field name="join_year" />
+            </field>
+         </field>
+      </record>
+       <!-- Employee  Extention For Horus -->
+      <record id="patner_data" model="ir.ui.view">
+         <field name="name">hue.partner.view</field>
+         <field name="model">res.partner</field>
+         <field name="inherit_id" ref="base.view_partner_form" />
+         <field name="arch" type="xml">
+            <!--<xpath expr="//form/sheet/group/group/field[@name='partner_id']" position="before">-->
+            <xpath expr="//page[@name='internal_notes']" position="after">
+               <!--<xpath expr="//form/sheet/notebook" position="a" > -->
+               <page name="public" string="Academic Info">
+                  <group string="Academic Info">
+                     <field name="related_student"  />
+                     <field name="student_code" String="Student Code" />
+
+                     <field name="cgpa" />
+                     <field name="faculty" />
+                     <field name="level" />
+                     <field name="join_year" String="Join Year" />
+                     <!-- <field name="join_term"/>    -->
+                     <field name="year" />
+                     <field name="student_nationality" />
+                     <field name="student_certificates" />
+                     <field name="student_city" />
+                     <field name="student_status" readonly="1" />
+                     <field name="percentage" />
+                     <field name="mc" String="MC"/>
+                  </group>
+               </page>
+            </xpath>
+         </field>
+      </record>
+      <!-- Employee  Extention For Horus -->
+      <record id="student_data" model="ir.ui.view">
+         <field name="name">hue.student.view</field>
+         <field name="model">op.student</field>
+         <field name="inherit_id" ref="openeducat_core.view_op_student_form" />
+         <field name="arch" type="xml">
+            <xpath expr="/form/*" position="before">
+               <header>
+                  <button name="create_user" type="object" class="oe_highlight" string="Create User" groups="base.group_user" help="Click to create User for this student" attrs="{'invisible': [('user_id', '!=',False)]}" />
+               </header>
+            </xpath>
+            <!--<xpath expr="//form/sheet/group/group/field[@name='partner_id']" position="before">-->
+            <!--Eductional data-->
+           <xpath expr="//field[@name='email']" position="after" >
+              <field name="photo_hide"  />
+              <field name="religion" />
+              <field name="stumobile" />
+              <field name="stutele" />
+              <field name="student_birth_place" />
+              <!-- <field name="specialneeds"  /> -->
+               <field name="special_needs"/>
+               <field name="educational_mandate"/>
+               <field name="extra_national_id"/>
+               <field name="admission_notes"/>
+               <field name="std_type"/>
+           </xpath>
+            <xpath expr="//page[@name='educational']" position="replace">
+               <page name="educational" string="Educational">
+                                <group col="4" colspan="4">
+                                    <field name="gr_no"/>
+                                </group>
+               <group string="Eductional Data">
+                     <field name="student_code" String="Student Code" />
+                     <!--attrs="{'readonly':[('specialized_faculty','==',False)]}"-->
+                     <field name="course_id" />
+                     <field name="student_status" />
+                     <field name="student_nationality" />
+                     <field name="faculty"  />
+                     <field name="level" />
+                     <field name="join_year" String="Join Year"/> 
+                     <field name="join_term" String="Join Term" />
+                     <field name="year" />
+                     <field name="timestamp" groups="openeducat_core.group_op_back_office"/>
+                     <field name="cgpa" groups="openeducat_core.group_op_back_office"/>
+                     <field name="new_gpa" groups="openeducat_core.group_op_back_office" />
+                     <field name="original_gpa" groups="openeducat_core.group_op_back_office" />
+                     <field name="crh"  groups="openeducat_core.group_op_back_office"/>
+                     <field name="new_crh" groups="openeducat_core.group_op_back_office" />
+                     <field name="core_crh"  groups="openeducat_core.group_op_back_office"/>
+                     <field name="elective_crh"  groups="openeducat_core.group_op_back_office"/>
+                     <field name="project_crh"  groups="openeducat_core.group_op_back_office"/>
+                     <field name="password" String="Password"   groups="openeducat_core.group_op_back_office"/>
+                     <field name="mc" String="MC"/>
+                     <field name="father_discount"/>
+                     <field name="brother_discount"/>
+                     <field name="syndicate_discount"/>
+                     <field name="martyrs_discount"/>
+                     <field name="early_discount"/>
+                     <field name="extra_discount"/>
+                     <field name="image_mc_discount"/>
+                     <field name="image_brother_discount"/>
+                     <field name="image_syndicate_discount"/>
+                     <field name="image_martyrs_discount"/>
+                     <field name="scholarship" String="Scholarship"  />
+                     <field name="top_student_discount"/>
+                     <field name="excellence_discount"/>
+                     <field name="syrian_egyptian"/>
+                     <field name="egyptian_expatriate"/>
+                     <field name="allow_registration"  groups="openeducat_core.group_op_back_office"/>
+                     <field name="registration_block_reason" options="{'no_quick_create':True,'no_create_edit':True}"  />
+                     <field name="result_block_reason" options="{'no_quick_create':True,'no_create_edit':True}" invisible="1" />
+                     <field name="user_id"  />
+                     <field name="advisor"/>
+                     <field name="previous_course_id" readonly="1"/>
+                     <field name="transfer_type" readonly="1"/>
+                      <field name="sds_tobedeleted"/>
+
+               </group>
+                                <group>
+                                    <separator string="Student Semesters Status" colspan="4"/>
+                                    <field name="course_detail_ids" nolabel="1">
+                                        <tree string="Course Details">
+                                            <field name="course_id"/>
+                                            <field name="batch_id"/>
+                                            <field name="roll_number"/>
+                                            <field name="subject_ids" widget="many2many_tags"/>
+                                        </tree>
+                                        <form>
+                                            <group cols="2" colspan="2">
+                                                <field name="course_id"/>
+                                                <field name="batch_id" domain="[('course_id', '=', course_id)]"/>
+                                                <field name="roll_number"/>
+                                            </group>
+                                            <group col="4" string="Subjects">
+                                                <field name="subject_ids" colspan="4" nolabel="1"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+            </xpath>
+
+            <xpath expr="//field[@name='last_name']" position="replace">
+               <field name="last_name" placeholder="Last Name"/>
+            </xpath>
+            <xpath expr="//field[@name='gender']" position="replace">
+               <field name="en_name" />
+               <field name="d_name"  />
+               <field name="gender"  />
+            </xpath>
+            <xpath expr="//field[@name='birth_date']" position="replace">
+               <field name="birth_date" />
+            </xpath>
+            <xpath expr="//page[@name='educational']" position="after">
+               <!--<xpath expr="//form/sheet/notebook" position="a" > -->
+               <page name="military_data" string="Military Data">
+                  <group string="Military Info">
+                     <field name="military_status" />
+                     <field name="militaryno" />
+                     <field name="decisionno" />
+                     <field name="military_date" />
+                  </group>
+               </page>
+            </xpath>
+            <xpath expr="//page[@name='educational']" position="after">
+               <!--<xpath expr="//form/sheet/notebook" position="a" > -->
+               <page name="guardian_data" string="Guardian Data">
+                  <group string="Family Info">
+                     <field name="gardian_name" />
+                     <field name="gardian_type" />
+                     <field name="gardian_tele" />
+                     <field name="gardian_mobile" />
+                  </group>
+               </page>
+            </xpath>
+            <xpath expr="//page[@name='educational']" position="after">
+               <!--<xpath expr="//form/sheet/notebook" position="a" > -->
+               <page name="prequalification_data" string="PreQualification Data">
+                  <group string="Academic Info">
+                     <field name="student_certificates" />
+<!--                     <field name="student_city" />
+-->                     <field name="percentage" />
+                      <field name="certificate_country" />
+                     <field name="certificate_date" />
+                     <field name="new_high_school_certificate"/>
+                     <field name="seatno" />
+                     <field name="qualyear" />
+                     <field name="university_name" />
+                     <field name="university_country"/>
+                     <field name="special_case" />
+                  </group>
+
+               </page>
+            </xpath>
+         </field>
+      </record>
+      <!-- Employee  Extention For Horus -->
+      <record id="product_data" model="ir.ui.view">
+         <field name="name">product.product.form.view</field>
+         <field name="model">product.product</field>
+         <field name="inherit_id" ref="product.product_normal_form_view" />
+         <field name="arch" type="xml">
+            <xpath expr="//page[@name='general_information']" position="before">
+               <!--<xpath expr="//page[@name='personal_information']"  >-->
+               <!--<xpath expr="//form/sheet/notebook" position="a" > -->
+               <page name="public" string="Installments">
+                  <group string="Installments Info">
+                     <field name="installments_id" readonly="1" />
+                     <field name="faculty_id"  />
+                  </group>
+               </page>
+                <page name="public" string="Discount">
+                  <group string="Discount Info">
+                     <field name="academic_id"/>
+                     <field name="discount_id"  />
+                     <field name="join_year"/>
+                     <field name="active_discount"  />
+                     <field name="event_ticket"  />
+                  </group>
+               </page>
+            </xpath>
+         </field>
+      </record>
+     <!-- <record id="view_student_status_access_right" model="ir.ui.view">
+        <field name="name">op.student.inherit.view</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+        <field name="priority">36</field>
+        <field name="groups_id" eval="[(4, ref('openeducat_core.group_op_back_office')),(4, ref('__export__.res_groups_134_839726ca'))]"/>
+        <field name="arch" type="xml">
+            <field name="student_status" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+                </field>                
+        </field>
+      </record>-->
+
+ <!--<record id="view_all_data_manager_access_right" model="ir.ui.view">
+        <field name="name">op.student.manager.view</field>
+        <field name="model">op.student</field>
+        <field name="inherit_id" ref="openeducat_core.view_op_student_form"/>
+        <field name="priority">36</field>
+        <field name="groups_id" eval="[(4, ref('openeducat_core.group_op_back_office'))]"/>
+        <field name="arch" type="xml">
+            <field name="student_code" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+            </field>
+            <field name="faculty" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+            </field>
+          <field name="level" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+            </field>
+            <field name="join_year" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+            </field>
+            <field name="join_term" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+            </field>
+            <field name="scholarship" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+            </field>
+            <field name="user_id" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+            </field>
+            <field name="advisor" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+            </field>
+
+            <field name="year" position="attributes">
+                   <attribute name="attrs">{'readonly':0}</attribute>                   
+            </field>
+   
+        </field>
+      </record>-->
+
+	<record id="student_block_reason_action" model="ir.actions.act_window">
+        <field name="name">Student Block Reasons</field>
+        <field name="res_model">hue.block.reason</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+   </record>
+
+
+    <menuitem id="student_block_reason_menu_id"
+			  name="Student Block Reasons"
+			  action="student_block_reason_action"
+			  parent="openeducat_core.menu_op_general_student"
+              groups="openeducat_core.group_op_back_office"
+			  sequence="10"/>
+
+   </data>
+</odoo>

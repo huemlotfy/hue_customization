@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- HUE Faculties Views -->
+    <record id="view_hue_faculties_tree" model="ir.ui.view">
+        <field name="name">hue.faculties.tree</field>
+        <field name="model">hue.faculties</field>
+        <field name="arch" type="xml">
+            <tree string="Faculties">
+                <field name="name"/>
+                <field name="identifier"/>
+                <field name="d_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_hue_faculties_form" model="ir.ui.view">
+        <field name="name">hue.faculties.form</field>
+        <field name="model">hue.faculties</field>
+        <field name="arch" type="xml">
+            <form string="Faculty">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="identifier"/>
+                        <field name="d_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_hue_faculties" model="ir.actions.act_window">
+        <field name="name">HUE Faculties</field>
+        <field name="res_model">hue.faculties</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_faculties_levels" model="ir.actions.act_window">
+        <field name="name">HUE Faculties Levels</field>
+        <field name="res_model">hue.faculties.levels</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_years" model="ir.actions.act_window">
+        <field name="name">HUE Financial Years</field>
+        <field name="res_model">hue.years</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_installments" model="ir.actions.act_window">
+        <field name="name">HUE Installments</field>
+        <field name="res_model">hue.installments</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_joining_years" model="ir.actions.act_window">
+        <field name="name">HUE Joining Years</field>
+        <field name="res_model">hue.joining.years</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_academic_years" model="ir.actions.act_window">
+        <field name="name">HUE Academic Years</field>
+        <field name="res_model">hue.academic.years</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_student_academic_years" model="ir.actions.act_window">
+        <field name="name">HUE Semesters</field>
+        <field name="res_model">hue.student.academic.years</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_terms" model="ir.actions.act_window">
+        <field name="name">Terms</field>
+        <field name="res_model">hue.terms</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_alumni_fees" model="ir.actions.act_window">
+        <field name="name">Alumni Fees</field>
+        <field name="res_model">hue.alumni.fees</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_block_reason" model="ir.actions.act_window">
+        <field name="name">Registration Block</field>
+        <field name="res_model">hue.block.reason</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_discounts" model="ir.actions.act_window">
+        <field name="name">Discounts</field>
+        <field name="res_model">hue.discounts</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_certificates" model="ir.actions.act_window">
+        <field name="name">Certificates Types</field>
+        <field name="res_model">hue.certificates</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_nationalities" model="ir.actions.act_window">
+        <field name="name">Nationalities Types</field>
+        <field name="res_model">hue.nationalities</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_cities" model="ir.actions.act_window">
+        <field name="name">Cities</field>
+        <field name="res_model">hue.cities</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_student_status" model="ir.actions.act_window">
+        <field name="name">Student Status</field>
+        <field name="res_model">hue.student.status</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_hue_student_invoices_status" model="ir.actions.act_window">
+        <field name="name">Student Invoices Status</field>
+        <field name="res_model">hue.student.status</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Main HUE Customization Menu -->
+    <menuitem id="menu_hue_customization" 
+              name="HUE Customization" 
+              sequence="45"/>
+    
+    <!-- Academic Settings Submenu -->
+    <menuitem id="menu_hue_academic_settings" 
+              name="Academic Settings" 
+              parent="menu_hue_customization"
+              sequence="10"/>
+
+    <!-- HUE Faculties menu (was missing) -->
+    <menuitem id="menu_hue_faculties" 
+              name="HUE Faculties" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_faculties" 
+              sequence="5"/>
+
+    <menuitem id="menu_hue_faculties_levels" 
+              name="HUE Faculties Levels" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_faculties_levels" 
+              sequence="10"/>
+
+    <menuitem id="menu_hue_years" 
+              name="HUE Financial Years" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_years" 
+              sequence="20"/>
+
+    <menuitem id="menu_hue_installments" 
+              name="HUE Installments" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_installments" 
+              sequence="30"/>
+
+    <menuitem id="menu_hue_joining_years" 
+              name="HUE Joining Years" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_joining_years" 
+              sequence="40"/>
+
+    <menuitem id="menu_hue_academic_years" 
+              name="HUE Academic Years" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_academic_years" 
+              sequence="50"/>
+
+    <menuitem id="menu_hue_semesters" 
+              name="HUE Semesters" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_student_academic_years" 
+              sequence="60"/>
+
+    <menuitem id="menu_hue_terms" 
+              name="Terms" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_terms" 
+              sequence="70"/>
+
+    <menuitem id="menu_hue_alumni_fees" 
+              name="Alumni Fees" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_alumni_fees" 
+              sequence="110"/>
+
+    <menuitem id="menu_hue_registration_block" 
+              name="Registration Block" 
+              parent="menu_hue_academic_settings" 
+              action="action_hue_block_reason" 
+              sequence="120"/>
+
+    <!-- Discounts Menu -->
+    <menuitem id="menu_hue_discounts" 
+              name="Discounts" 
+              parent="menu_hue_customization" 
+              action="action_hue_discounts" 
+              sequence="20"/>
+
+    <!-- Certificates Menu -->
+    <menuitem id="menu_hue_certificates" 
+              name="Certificates Types" 
+              parent="menu_hue_customization" 
+              action="action_hue_certificates" 
+              sequence="30"/>
+
+    <!-- Nationalities Menu -->
+    <menuitem id="menu_hue_nationalities" 
+              name="Nationalities Types" 
+              parent="menu_hue_customization" 
+              action="action_hue_nationalities" 
+              sequence="40"/>
+
+    <!-- Cities Menu -->
+    <menuitem id="menu_hue_cities" 
+              name="Cities" 
+              parent="menu_hue_customization" 
+              action="action_hue_cities" 
+              sequence="50"/>
+
+    <!-- Student Invoices Menu -->
+    <menuitem id="menu_hue_student_invoices" 
+              name="Student Invoices" 
+              parent="menu_hue_customization"
+              sequence="55"/>
+
+    <menuitem id="menu_hue_student_invoices_status" 
+              name="Student Invoices Status" 
+              parent="menu_hue_student_invoices" 
+              action="action_hue_student_invoices_status" 
+              sequence="10"/>
+
+    <!-- Student Status Menu -->
+    <menuitem id="menu_hue_student_status" 
+              name="Student Status" 
+              parent="menu_hue_customization" 
+              action="action_hue_student_status" 
+              sequence="60"/>
+
+</odoo>
